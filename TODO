@@ -1,0 +1,16 @@
+'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
+'Alt+Enter' (Option + Enter) // Triggers `Todo: Toggle Box`
+'Alt+D' (Option + D) // Triggers `Todo: Toggle Done`
+'Alt+C' (Option + C) // Triggers `Todo: Toggle Cancelled`
+'Alt+S' (Option + S) // Triggers `Todo: Toggle Start`
+
+This file is for team to organize tasks related to the project's code if no story has been created yet.
+
+Marcio:
+  ☐ Verify token expiration
+  ☐ Create migration file directly in migration's folder
+  ☐ Running migrations without especifying each by each in the ormconfig file.
+  ☐ Configure Husky
+  ☐ Configure Jest's coverage's threshold
+
+
