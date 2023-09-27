@@ -20,6 +20,7 @@ describe('Forgot Password Service tests', () => {
       (user) => user.email === email,
     );
     fakeAuthenticationRepository.users[foundIndex].reset_token = '';
+    fakeAuthenticationRepository.users[foundIndex].token = 'valid-token';
 
     jest.spyOn(forgotPasswordService, 'execute');
 
@@ -28,6 +29,9 @@ describe('Forgot Password Service tests', () => {
     expect(
       fakeAuthenticationRepository.users[foundIndex].reset_token,
     ).not.toEqual('');
+    expect(fakeAuthenticationRepository.users[foundIndex].token).not.toEqual(
+      'valid-token',
+    );
     expect(forgotPasswordService.execute).toHaveBeenCalled();
   });
 

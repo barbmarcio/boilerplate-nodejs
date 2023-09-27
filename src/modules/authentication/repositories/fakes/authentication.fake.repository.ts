@@ -69,6 +69,7 @@ class FakeAuthenticationRepository
   forgotPassword(email: string, resetToken: string): Promise<User> {
     const foundIndex = this.users.findIndex((user) => user.email === email);
     this.users[foundIndex].reset_token = resetToken;
+    this.users[foundIndex].token = '';
     return Promise.resolve(this.users[foundIndex]);
   }
 

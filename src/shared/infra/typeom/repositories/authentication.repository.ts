@@ -44,6 +44,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
     return this.authRepository.save({
       email,
       reset_token: resetToken,
+      token: '',
     });
   }
 
