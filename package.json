@@ -11,6 +11,7 @@
     "migration:rev": "npm run typeorm -- -d ./src/shared/database/ormconfig.ts migration:revert",
     "migration:create": "npm run typeorm migration:create src/shared/infra/typeorm/migration",
     "lint": "eslint . --fix --ext .ts",
+    "commit": "git-cz",
     "test": "jest",
     "build": "tsc",
     "prepare": "husky install"
@@ -30,6 +31,8 @@
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@types/bcrypt": "^5.0.0",
     "@types/compression": "^1.7.3",
     "@types/cors": "^2.8.14",
@@ -39,6 +42,8 @@
     "@types/swagger-jsdoc": "^6.0.1",
     "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.49.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
@@ -53,5 +58,10 @@
   },
   "keywords": [],
   "author": "",
-  "description": ""
+  "description": "",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
