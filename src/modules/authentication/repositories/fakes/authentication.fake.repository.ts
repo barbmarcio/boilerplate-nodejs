@@ -13,7 +13,7 @@ class FakeAuthenticationRepository
       email: 'testing@ff.com',
       first_name: 'Test',
       last_name: 'Person',
-      password: '$2b$10$YvdSYzfan5f/UZEnkCUwHepGZTAFoHNkw.hK8KEGuXefOHtNSB2Hu',
+      password: '$2b$10$OPdvsV/MTQS0AyCmMu3HCuYaH0SnpebS49KS8Vz78Dk0r3kFUtAo.', //pass
       token: '',
       reset_token: '',
       created_at: mockedDate,
@@ -41,9 +41,9 @@ class FakeAuthenticationRepository
     return Promise.resolve(this.users[foundIndex]);
   }
 
-  logInAndLogOut(email: string, token: string): Promise<User> {
+  authenticate(email: string, token: string): Promise<User> {
     const foundIndex = this.users.findIndex(
-      (user) => user.email === email && user.token === token,
+      (user) => user.email === email,
     );
     this.users[foundIndex].token = token;
     return Promise.resolve(this.users[foundIndex]);

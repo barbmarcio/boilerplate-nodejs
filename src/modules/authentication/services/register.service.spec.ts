@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import FakeAuthenticationRepository from '../repositories/fakes/authentication.fake.repository';
 import RegisterService from './register.service';
 import AuthenticationDTO from '../dtos/authentication.dto';

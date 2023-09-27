@@ -2,7 +2,7 @@ import { Router } from 'express';
 import * as swaggerUi from 'swagger-ui-express';
 import * as swaggerDocument from '../../../../../swagger.json';
 import authRouter from '../../../../modules/authentication/infra/http/routes/authentication.routes';
-import verifyToken from '../../../middlewares/auth';
+import verifyToken from '../../../middlewares/auth.middleware';
 
 const router = Router();
 

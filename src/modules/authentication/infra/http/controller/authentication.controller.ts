@@ -3,13 +3,13 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import responseError from '../../../../../shared/helpers/response-error';
 import responseSuccess from '../../../../../shared/helpers/response.success';
-import LogInService from '../../../services/login.service';
 import AppError, { AlertMessage } from '../../../../../shared/errors/app-error';
 import { CommonMessages } from '../../../../../shared/errors/common-messages';
 import RegisterService from '../../../services/register.service';
-import LogOutService from '../../../services/logout.service';
 import ForgotPasswordService from '../../../services/forgot-password.service';
 import ResetPasswordService from '../../../services/reset-password.service';
+import { ActionType } from '../../../../../shared/constants/actions';
+import AuthenticationService from '../../../services/authentication.service';
 
 class AuthenticationController {
   public async register(_req: Request, _res: Response): Promise<Response> {
@@ -49,9 +49,10 @@ class AuthenticationController {
       }
 
       const user = _req.body;
-      const logInService = container.resolve(LogInService);
-      const logInResponse = await logInService.execute(user);
-      return responseSuccess(_req, _res, logInResponse);
+      const action = ActionType.LOG_IN;
+      const authService = container.resolve(AuthenticationService);
+      const authResponse = await authService.execute(user, action);
+      return responseSuccess(_req, _res, authResponse);
     } catch (error) {
       console.error(error);
       return responseError(_req, _res, error);
@@ -72,9 +73,10 @@ class AuthenticationController {
       }
 
       const user = _req.body;
-      const logOutService = container.resolve(LogOutService);
-      const logOutResponse = await logOutService.execute(user);
-      return responseSuccess(_req, _res, logOutResponse);
+      const action = ActionType.LOG_OUT;
+      const authService = container.resolve(AuthenticationService);
+      const authResponse = await authService.execute(user, action);
+      return responseSuccess(_req, _res, authResponse);
     } catch (error) {
       console.error(error);
       return responseError(_req, _res, error);
@@ -121,8 +123,10 @@ class AuthenticationController {
       }
 
       const resetPasswordService = container.resolve(ResetPasswordService);
-      const resetPasswordResponse =
-        await resetPasswordService.execute(resetToken, password);
+      const resetPasswordResponse = await resetPasswordService.execute(
+        resetToken,
+        password,
+      );
       return responseSuccess(_req, _res, resetPasswordResponse);
     } catch (error) {
       console.error(error);

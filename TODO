@@ -10,6 +10,7 @@ Marcio:
   ☐ Verify token expiration
   ☐ Create migration file directly in migration's folder
   ☐ Running migrations without especifying each by each in the ormconfig file.
+  ☐ Define allowed hosts for CORS
   ☐ Configure Husky
   ☐ Configure Jest's coverage's threshold
 

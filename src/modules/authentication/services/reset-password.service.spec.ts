@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import FakeAuthenticationRepository from '../repositories/fakes/authentication.fake.repository';
 import AuthenticationDTO from '../dtos/authentication.dto';
 import AppError from '../../../shared/errors/app-error';

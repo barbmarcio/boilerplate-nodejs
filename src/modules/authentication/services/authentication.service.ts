@@ -7,15 +7,19 @@ import AuthenticationMapper from '../../../shared/infra/typeom/mappers/authentic
 import AuthenticationDTO from '../dtos/authentication.dto';
 import AppError, { AlertMessage } from '../../../shared/errors/app-error';
 import { CommonMessages } from '../../../shared/errors/common-messages';
+import { ActionType } from '../../../shared/constants/actions';
 
 @injectable()
-class LogInService {
+class AuthenticationService {
   constructor(
     @inject('AuthenticationRepository')
     private readonly authRepository: AuthenticationRepositoryInterface,
   ) {}
 
-  public async execute(data: AuthenticationDTO): Promise<string> {
+  public async execute(
+    data: AuthenticationDTO,
+    action: ActionType,
+  ): Promise<string> {
     const foundUser = await this.authRepository.getUserByEmail(data.email);
 
     if (!foundUser) {
@@ -34,24 +38,27 @@ class LogInService {
       );
     }
 
-    data.token = jwt.sign(
-      {
-        email: data.email,
-      },
-      process.env.JWT_TOKEN_KEY as jwt.Secret,
-      {
-        expiresIn: '2h',
-      },
-    );
+    data.token = '';
+    if (action === ActionType.LOG_IN) {
+      data.token = jwt.sign(
+        {
+          email: data.email,
+        },
+        process.env.JWT_TOKEN_KEY as jwt.Secret,
+        {
+          expiresIn: '2h',
+        },
+      );
+    }
 
     const mappedUser = AuthenticationMapper.toEntity(data);
-    await this.authRepository.logInAndLogOut(
+    await this.authRepository.authenticate(
       mappedUser.email,
       mappedUser.token as string,
     );
 
-    return 'Successfully logged in';
+    return `Successfully ${action}`;
   }
 }
 
-export default LogInService;
+export default AuthenticationService;

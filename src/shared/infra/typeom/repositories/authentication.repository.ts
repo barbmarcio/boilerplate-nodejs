@@ -33,7 +33,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
     return newUser;
   }
 
-  public async logInAndLogOut(email: string, token: string): Promise<User> {
+  public async authenticate(email: string, token: string): Promise<User> {
     return this.authRepository.save({
       email,
       token,
