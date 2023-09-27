@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { config } from 'dotenv';
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import AppError, { AlertMessage } from '../errors/app-error';
 import { CommonMessages } from '../errors/common-messages';
 import responseError from '../helpers/response-error';
+
 config();
 
 const verifyToken = (_req: Request, _res: Response, _next: NextFunction) => {

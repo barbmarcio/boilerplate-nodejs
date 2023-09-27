@@ -21,7 +21,21 @@
     "no-await-in-loop": "off",
     "no-shadow": "off",
     "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": "warn",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-duplicates": "off",
+    "import/order": "off",
+    "import/no-self-import": "off",
+    "import/no-cycle": "off",
+    "import/no-relative-packages": "off",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-useless-path-segments": "off",
+    "import/named": "off",
+    "no-param-reassign": "off",
+    "no-empty-function": "warn",
+    "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/array-type": "warn",
     "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/no-empty-interface": "error",
@@ -32,13 +46,6 @@
     "@typescript-eslint/no-unsed-vars": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "no-useless-constructor": "off",
-    "import/extensions": [
-      "warn",
-      "ignorePackages",
-      {
-        "ts": "never"
-      }
-    ],
     "camelcase": "off",
     "no-console": [
       "warn",
@@ -46,7 +53,7 @@
         "allow": ["warn", "error"]
       }
     ],
-    "no-undef": "warn",
+    "no-undef": "off",
     "prettier/prettier": [
       "error",
       {

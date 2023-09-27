@@ -1,5 +1,5 @@
-import { AppDataSource } from '../../../database/ormconfig';
 import { Repository } from 'typeorm';
+import { AppDataSource } from '../../../database/ormconfig';
 import User from '../entities/user.entity';
 import AuthenticationRepositoryInterface from '../../../../modules/authentication/repositories/authentication.repository.interface';
 
@@ -38,10 +38,6 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
       email,
       token,
     });
-  }
-
-  public async logout(data: User): Promise<string> {
-    return '';
   }
 
   forgotPassword(email: string, resetToken: string): Promise<User> {

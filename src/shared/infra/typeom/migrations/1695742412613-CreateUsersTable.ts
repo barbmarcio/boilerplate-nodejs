@@ -10,25 +10,25 @@ export class CreateUsersTable1695742412613 implements MigrationInterface {
             name: 'email',
             type: 'varchar',
             length: '100',
-            isPrimary: true
+            isPrimary: true,
           },
           {
             name: 'first_name',
             type: 'varchar',
             length: '100',
-            isNullable: false
+            isNullable: false,
           },
           {
             name: 'last_name',
             type: 'varchar',
             length: '100',
-            isNullable: false
+            isNullable: false,
           },
           {
             name: 'password',
             type: 'varchar',
             length: '100',
-            isNullable: false
+            isNullable: false,
           },
           {
             name: 'token',
@@ -50,9 +50,9 @@ export class CreateUsersTable1695742412613 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
-        ]
-      })
-    )
+        ],
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

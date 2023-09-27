@@ -37,8 +37,8 @@ describe('Register Service tests', () => {
       lastName: 'Person',
       password: '$2b$10$YvdSYzfan5f/UZEnkCUwHepGZTAFoHNkw.hK8KEGuXefOHtNSB2Hu',
     };
-    await expect(registerService.execute(alreadyExistingUser)).rejects.toBeInstanceOf(
-      AppError,
-    );
+    await expect(
+      registerService.execute(alreadyExistingUser),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

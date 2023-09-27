@@ -10,7 +10,7 @@ router.get('/health', verifyToken, (_req, _res) => {
   _res.json({ message: 'API is healthy' });
 });
 
-//Authentication Endpoints
+// Authentication Endpoints
 router.use('/auth', authRouter);
 
 router.get('/swagger', (_req, _res) => {

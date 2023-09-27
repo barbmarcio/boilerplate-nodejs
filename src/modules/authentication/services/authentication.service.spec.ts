@@ -73,10 +73,7 @@ describe('Authentication Service tests', () => {
       password: 'pass',
     };
     await expect(
-      authService.execute(
-        nonExistingUser,
-        action,
-      ),
+      authService.execute(nonExistingUser, action),
     ).rejects.toBeInstanceOf(AppError);
   });
 
@@ -89,10 +86,7 @@ describe('Authentication Service tests', () => {
       password: 'anotherPass',
     };
     await expect(
-      authService.execute(
-        nonExistingUser,
-        action,
-      ),
+      authService.execute(nonExistingUser, action),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

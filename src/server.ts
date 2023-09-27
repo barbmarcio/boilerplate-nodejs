@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 import { config } from 'dotenv';
 import app from './index';
 import { AppDataSource } from './shared/database/ormconfig';
 import './shared/dependencies';
+
 config();
 
 console.log('🔄 - Connecting to the database.');

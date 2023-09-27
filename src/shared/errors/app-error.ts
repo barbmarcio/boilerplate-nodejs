@@ -1,3 +1,5 @@
+import ErrorResultInterface from './error-result.interface';
+
 export enum AlertMessage {
   error = 'FF_BE_App_Error',
   warn = 'FF_BE_App_Warning',
@@ -9,9 +11,13 @@ class AppError {
 
   public readonly message: string;
 
-  public readonly errorCode: any;
+  public readonly errorCode: ErrorResultInterface;
 
-  constructor(errorType: AlertMessage, message: string, errorCode: any) {
+  constructor(
+    errorType: AlertMessage,
+    message: string,
+    errorCode: ErrorResultInterface,
+  ) {
     this.errorType = errorType;
     this.message = message;
     this.errorCode = errorCode;

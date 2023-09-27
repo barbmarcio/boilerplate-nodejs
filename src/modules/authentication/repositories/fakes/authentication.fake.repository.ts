@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import User from '../../../../shared/infra/typeom/entities/user.entity';
 import AuthenticationRepositoryInterface from '../authentication.repository.interface';
 
@@ -13,7 +12,7 @@ class FakeAuthenticationRepository
       email: 'testing@ff.com',
       first_name: 'Test',
       last_name: 'Person',
-      password: '$2b$10$OPdvsV/MTQS0AyCmMu3HCuYaH0SnpebS49KS8Vz78Dk0r3kFUtAo.', //pass
+      password: '$2b$10$OPdvsV/MTQS0AyCmMu3HCuYaH0SnpebS49KS8Vz78Dk0r3kFUtAo.', // pass
       token: '',
       reset_token: '',
       created_at: mockedDate,
@@ -42,9 +41,7 @@ class FakeAuthenticationRepository
   }
 
   authenticate(email: string, token: string): Promise<User> {
-    const foundIndex = this.users.findIndex(
-      (user) => user.email === email,
-    );
+    const foundIndex = this.users.findIndex((user) => user.email === email);
     this.users[foundIndex].token = token;
     return Promise.resolve(this.users[foundIndex]);
   }
