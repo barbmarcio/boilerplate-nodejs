@@ -20,7 +20,6 @@ class AuthenticationService {
     data: AuthenticationDTO,
     action: ActionType,
   ): Promise<string> {
-    const abc = '';
     const foundUser = await this.authRepository.getUserByEmail(data.email);
 
     if (!foundUser) {

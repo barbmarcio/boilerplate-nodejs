@@ -7,11 +7,20 @@
 This file is for team to organize tasks related to the project's code if no story has been created yet.
 
 Marcio:
+  ✔ Create structure with modules @done(23-09-26 12:56)
+  ✔ Configure Prettier @done(23-09-27 09:58)
+  ✔ Configure Eslint @done(23-09-27 09:58)
+  ✔ Configure Commitzen / Commitlint @done(23-09-27 09:58)
+  ✔ Configure Editorconfig @done(23-09-27 09:58)
+  ✔ Configure Husky @done(23-09-27 09:56)
+  ✔ Configure Swagger placeholder @done(23-09-27 09:56)
+  ✔ Configure Jest @done(23-09-27 09:56)
+  ☐ Configure Jest's coverage's threshold
+  ✔ Create authentication module @done(23-09-27 09:58)
   ☐ Verify token expiration time (it is set to 2h now)
   ☐ Create migration file directly in migration's folder
   ☐ Running migrations without especifying each by each in the ormconfig file.
   ☐ Define allowed hosts for CORS
-  ☐ Configure Husky
-  ☐ Configure Jest's coverage's threshold
+  ☐ Typeorm folder name
 
 
