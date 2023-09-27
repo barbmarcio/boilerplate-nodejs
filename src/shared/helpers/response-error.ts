@@ -2,24 +2,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { CommonMessages } from '../errors/common-messages';
-import ErrorResultInterface from '../errors/error-result.interface';
 
-interface DefaultErrorCode {
-  errorCode: ErrorResultInterface;
-}
-
-export default (
-  _req: Request,
-  _res: Response,
-  error: ErrorResultInterface | DefaultErrorCode,
-) => {
+export default (_req: Request, _res: Response, error: any) => {
   let errorCode;
-  if ((error as DefaultErrorCode).errorCode) {
-    const mappedError = (error as DefaultErrorCode).errorCode;
+  if (error?.errorCode) {
     errorCode = {
-      code: mappedError.code,
-      message: mappedError.message,
-      status: mappedError.status,
+      code: error.errorCode.code,
+      message: error.errorCode.message,
+      status: error.errorCode.status,
     };
   } else {
     errorCode = CommonMessages.NOT_EXPECTED_ERROR;

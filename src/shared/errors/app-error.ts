@@ -1,5 +1,4 @@
-import ErrorResultInterface from './error-result.interface';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export enum AlertMessage {
   error = 'FF_BE_App_Error',
   warn = 'FF_BE_App_Warning',
@@ -11,13 +10,9 @@ class AppError {
 
   public readonly message: string;
 
-  public readonly errorCode: ErrorResultInterface;
+  public readonly errorCode: any;
 
-  constructor(
-    errorType: AlertMessage,
-    message: string,
-    errorCode: ErrorResultInterface,
-  ) {
+  constructor(errorType: AlertMessage, message: string, errorCode: any) {
     this.errorType = errorType;
     this.message = message;
     this.errorCode = errorCode;
