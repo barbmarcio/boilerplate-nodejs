@@ -1,4 +1,6 @@
 export default class AuthenticationDTO {
+  uuid?: string;
+
   firstName: string;
 
   lastName: string;

@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import bcrypt from 'bcrypt';
+import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { config } from 'dotenv';
@@ -29,6 +30,7 @@ class RegisterService {
       );
     }
 
+    data.uuid = uuidv4();
     data.createdAt = new Date();
     data.updatedAt = new Date();
     data.password = await bcrypt.hash(data.password, 10);

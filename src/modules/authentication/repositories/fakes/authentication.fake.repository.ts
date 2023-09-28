@@ -40,10 +40,19 @@ class FakeAuthenticationRepository
     return Promise.resolve(this.users[foundIndex]);
   }
 
-  authenticate(email: string, token: string): Promise<User> {
+  authenticate(email: string, token: string): Promise<void> {
     const foundIndex = this.users.findIndex((user) => user.email === email);
     this.users[foundIndex].token = token;
-    return Promise.resolve(this.users[foundIndex]);
+    return Promise.resolve();
+  }
+
+  getUserById(id: string): Promise<User | null> {
+    const foundUser = this.users.find((user) => user.uuid === id);
+
+    if (!foundUser) {
+      return Promise.resolve(null);
+    }
+    return Promise.resolve(foundUser);
   }
 
   getUserByEmail(email: string): Promise<User | null> {
@@ -66,19 +75,19 @@ class FakeAuthenticationRepository
     return Promise.resolve(foundUser);
   }
 
-  forgotPassword(email: string, resetToken: string): Promise<User> {
+  forgotPassword(email: string, resetToken: string): Promise<void> {
     const foundIndex = this.users.findIndex((user) => user.email === email);
     this.users[foundIndex].reset_token = resetToken;
     this.users[foundIndex].token = '';
-    return Promise.resolve(this.users[foundIndex]);
+    return Promise.resolve();
   }
 
-  resetPassword(data: User): Promise<User> {
+  resetPassword(data: User): Promise<void> {
     const foundIndex = this.users.findIndex(
       (user) => user.reset_token === data.reset_token,
     );
     this.users[foundIndex] = data;
-    return Promise.resolve(this.users[foundIndex]);
+    return Promise.resolve();
   }
 }
 

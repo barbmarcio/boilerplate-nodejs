@@ -4,6 +4,7 @@ import User from '../entities/user.entity';
 class AuthenticationMapper {
   toEntity(dto: AuthenticationDTO): User {
     return {
+      uuid: dto.uuid,
       email: dto.email,
       first_name: dto.firstName,
       last_name: dto.lastName,

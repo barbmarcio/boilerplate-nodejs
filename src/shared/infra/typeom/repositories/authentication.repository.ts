@@ -10,6 +10,14 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
     this.authRepository = AppDataSource.getRepository(User);
   }
 
+  public async getUserById(id: string): Promise<User | null> {
+    return this.authRepository.findOne({
+      where: {
+        uuid: id,
+      },
+    });
+  }
+
   public async getUserByEmail(email: string): Promise<User | null> {
     return this.authRepository.findOne({
       where: {
@@ -33,23 +41,41 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface {
     return newUser;
   }
 
-  public async authenticate(email: string, token: string): Promise<User> {
-    return this.authRepository.save({
-      email,
-      token,
-    });
+  public async authenticate(email: string, token: string): Promise<void> {
+    await this.authRepository.update(
+      {
+        email,
+      },
+      {
+        token,
+      },
+    );
   }
 
-  forgotPassword(email: string, resetToken: string): Promise<User> {
-    return this.authRepository.save({
-      email,
-      reset_token: resetToken,
-      token: '',
-    });
+  public async forgotPassword(
+    email: string,
+    resetToken: string,
+  ): Promise<void> {
+    await this.authRepository.update(
+      {
+        email,
+      },
+      {
+        reset_token: resetToken,
+        token: '',
+      },
+    );
   }
 
-  public async resetPassword(data: User): Promise<User> {
-    return this.authRepository.save(data);
+  public async resetPassword(data: User): Promise<void> {
+    await this.authRepository.update(
+      { email: data.email },
+      {
+        reset_token: '',
+        token: data.token,
+        password: data.password,
+      },
+    );
   }
 }
 

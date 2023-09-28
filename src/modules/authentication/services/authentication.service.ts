@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import AuthenticationRepositoryInterface from '../repositories/authentication.repository.interface';
-import AuthenticationMapper from '../../../shared/infra/typeom/mappers/authentication.mapper';
 import AuthenticationDTO from '../dtos/authentication.dto';
 import AppError, { AlertMessage } from '../../../shared/errors/app-error';
 import { CommonMessages } from '../../../shared/errors/common-messages';
@@ -38,11 +37,11 @@ class AuthenticationService {
       );
     }
 
-    data.token = '';
+    foundUser.token = '';
     if (action === ActionType.LOG_IN) {
-      data.token = jwt.sign(
+      foundUser.token = jwt.sign(
         {
-          email: data.email,
+          email: foundUser.email,
         },
         process.env.JWT_TOKEN_KEY as jwt.Secret,
         {
@@ -51,10 +50,9 @@ class AuthenticationService {
       );
     }
 
-    const mappedUser = AuthenticationMapper.toEntity(data);
     await this.authRepository.authenticate(
-      mappedUser.email,
-      mappedUser.token as string,
+      foundUser.email,
+      foundUser.token as string,
     );
 
     return `Successfully ${action}`;
